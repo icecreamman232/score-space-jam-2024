@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject m_enterDoorPrefab;
     [SerializeField] private GameObject m_exitDoorPrefab;
     [SerializeField] private BoolEvent m_levelWinEvent;
+    [SerializeField] private ActionEvent m_loadNewLevel;
     [Header("Level")] 
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_obstacleLevel_1_List;
@@ -63,7 +64,10 @@ public class GameManager : Singleton<GameManager>
     private void OnLevelWon(bool isWin)
     {
         Pause();
-        m_curLevel++;
+        if (isWin)
+        {
+            m_curLevel++;
+        }
     }
 
     public void LoadLevel()
@@ -87,6 +91,7 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSecondsRealtime(0.5f);
         var player = Instantiate(m_playerPrefab,m_enterPos, Quaternion.identity);
         m_objectInLevelList.Add(player);
+        m_loadNewLevel.Raise();
         UnPause();
     }
     

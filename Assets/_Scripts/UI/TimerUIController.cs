@@ -8,7 +8,6 @@ public class TimerUIController : MonoBehaviour
     [Header("Value")]
     [SerializeField] private int m_curMin;
     [SerializeField] private int m_curSec;
-    [SerializeField] private BoolEvent m_levelWinEvent;
     [Header("UI")] 
     [SerializeField] private TextMeshProUGUI m_timerText;
 

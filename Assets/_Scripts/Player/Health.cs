@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float m_invulnerableDuration;
     [SerializeField] private Animator m_animator;
     [SerializeField] private IntEvent m_healthEvent;
+    [SerializeField] private BoolEvent m_levelWonEvent;
 
     private bool m_isInvulnerable;
     private void Start()
@@ -35,7 +36,8 @@ public class Health : MonoBehaviour
     private void ProcessKill()
     {
         m_isInvulnerable = true;
-        Destroy(this.gameObject);
+        //Raise event that the level is lost = player's dead
+        m_levelWonEvent.Raise(false);
         Debug.Log("<color=red>Player DEAD</color>");
     }
 

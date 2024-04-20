@@ -214,3 +214,4 @@ MonoBehaviour:
   m_invulnerableDuration: 0.5
   m_animator: {fileID: 5693425374684673214}
   m_healthEvent: {fileID: 11400000, guid: 57b9c4747a4254a4b828b06ad13848a7, type: 2}
+  m_levelWonEvent: {fileID: 11400000, guid: 5d01feb5543ff694eaa4162a9ed1d254, type: 2}

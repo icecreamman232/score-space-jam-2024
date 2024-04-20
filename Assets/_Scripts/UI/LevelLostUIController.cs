@@ -1,43 +1,40 @@
 using JustGame.Scripts.ScriptableEvent;
+using TMPro;
 using UnityEngine;
 
-public class HUDController : MonoBehaviour
+public class LevelLostUIController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup m_canvasGroup;
+    [SerializeField] private TextMeshProUGUI m_timeTxt;
     [SerializeField] private BoolEvent m_levelWonEvent;
-    [SerializeField] private ActionEvent m_loadLevelDoneEvent;
-    
+
     private void Start()
     {
-        Show();
+        Hide();
         m_levelWonEvent.AddListener(OnLevelWon);
-        m_loadLevelDoneEvent.AddListener(OnLoadLevelDone);
     }
 
     private void OnDestroy()
     {
         m_levelWonEvent.RemoveListener(OnLevelWon);
-        m_loadLevelDoneEvent.RemoveListener(OnLoadLevelDone);
     }
 
-    private void OnLoadLevelDone()
+    private void OnLevelWon(bool isWon)
     {
+        if (isWon) return;
         Show();
-    }
-
-    private void OnLevelWon(bool isWin)
-    {
-        Hide();
+        var gameManager = GameManager.Instance;
+        m_timeTxt.text = $"{gameManager.LastMinute:00}:{gameManager.LastSeconds:00}";
     }
 
     private void Show()
     {
         m_canvasGroup.alpha = 1;
-        m_canvasGroup.interactable = false;
-        m_canvasGroup.blocksRaycasts = false;
+        m_canvasGroup.interactable = true;
+        m_canvasGroup.blocksRaycasts = true;
     }
 
-    private void Hide()
+    public void Hide()
     {
         m_canvasGroup.alpha = 0;
         m_canvasGroup.interactable = false;

@@ -21,6 +21,7 @@ public class LevelWinUIController : MonoBehaviour
 
     private void OnLevelWon(bool isWon)
     {
+        if (!isWon) return;
         Show();
         var gameManager = GameManager.Instance;
         m_timeTxt.text = $"{gameManager.LastMinute:00}:{gameManager.LastSeconds:00}";
