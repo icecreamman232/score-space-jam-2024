@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int m_maxHealth;
     [SerializeField] private int m_curHealth;
     [SerializeField] private float m_invulnerableDuration;
+    [SerializeField] private Animator m_animator;
     [SerializeField] private IntEvent m_healthEvent;
 
     private bool m_isInvulnerable;
@@ -41,7 +42,9 @@ public class Health : MonoBehaviour
     private IEnumerator OnInvulnerable()
     {
         m_isInvulnerable = true;
+        m_animator.SetBool("IsInvulnerable", true);
         yield return new WaitForSeconds(m_invulnerableDuration);
+        m_animator.SetBool("IsInvulnerable", false);
         m_isInvulnerable = false;
     }
 }
