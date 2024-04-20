@@ -190,3 +190,4 @@ MonoBehaviour:
   m_maxHealth: 3
   m_curHealth: 0
   m_invulnerableDuration: 0.3
+  m_healthEvent: {fileID: 11400000, guid: 57b9c4747a4254a4b828b06ad13848a7, type: 2}

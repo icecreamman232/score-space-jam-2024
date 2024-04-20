@@ -1,4 +1,5 @@
 using System.Collections;
+using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -6,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int m_maxHealth;
     [SerializeField] private int m_curHealth;
     [SerializeField] private float m_invulnerableDuration;
+    [SerializeField] private IntEvent m_healthEvent;
 
     private bool m_isInvulnerable;
     private void Start()
@@ -18,7 +20,8 @@ public class Health : MonoBehaviour
         if (m_isInvulnerable) return;
         
         m_curHealth -= damage;
-
+        m_healthEvent.Raise(m_curHealth);
+        
         if (m_curHealth <= 0)
         {
             ProcessKill();
@@ -32,7 +35,7 @@ public class Health : MonoBehaviour
     {
         m_isInvulnerable = true;
         Destroy(this.gameObject);
-        Debug.Log($"<color=red>Player DEAD<color/>");
+        Debug.Log("<color=red>Player DEAD</color>");
     }
 
     private IEnumerator OnInvulnerable()
