@@ -3,10 +3,11 @@ using Random = UnityEngine.Random;
 
 public class RectMovement : MonoBehaviour
 {
-    [SerializeField] private Vector2[] m_limitArr;
     [SerializeField] private Vector2 m_limit;
     [SerializeField] private float m_minDuration;
     [SerializeField] private float m_maxDuration;
+    [Header("Direction")]
+    [SerializeField] private bool m_is4Direction;
     [Header("Speed")] 
     [SerializeField] private float m_moveSpeed;
     [SerializeField] private float m_minSpeed;
@@ -19,15 +20,26 @@ public class RectMovement : MonoBehaviour
     private float m_timerChangeSpeed;
     private Vector2 m_lastPos;
 
-    private Vector2[] m_directionArr =
+    private Vector2[] m_8directionArr =
     {
-        new(-1, 0),
-        new(-1, -1),
-        new(-1, 1),
+        new(0, 1), //top
+        new(1, 1), //top-right
+        new(1, 0), //right
         
-        new(1, 0),
-        new(1, -1),
-        new(1, 1),
+        new(1, -1), //bot-right
+        new(0, -1), //bot
+        new(-1, -1), //bot-left
+        
+        new(-1, 0), //left
+        new(-1, 1), //top-left
+    };
+    
+    private Vector2[] m_4directionArr =
+    {
+        new(0, 1), //top
+        new(1, 0), //right
+        new(0, -1), //bot
+        new(-1, 0), //left
     };
 
     private void Start()
@@ -37,9 +49,6 @@ public class RectMovement : MonoBehaviour
         
         m_timerChangeSpeed = GetRandomChangeSpeedDuration();
         m_moveSpeed = GetRandomSpeed();
-
-        transform.localScale = GetRandomScale();
-        SetLimit(transform.localScale.x);
     }
 
     private void Update()
@@ -81,30 +90,17 @@ public class RectMovement : MonoBehaviour
 
     private void ChangeDirection()
     {
-        m_direction = m_directionArr[Random.Range(0, 6)];
-    }
-
-    private void SetLimit(float scaleValue)
-    {
-        switch (scaleValue)
+        if (m_is4Direction)
         {
-            case 1:
-                m_limit = m_limitArr[0];
-                break;
-            case 2:
-                m_limit = m_limitArr[1];
-                break;
-            case 3:
-                m_limit = m_limitArr[2];
-                break;
+            m_direction = m_4directionArr[Random.Range(0, m_4directionArr.Length)];
         }
+        else
+        {
+            m_direction = m_8directionArr[Random.Range(0, m_8directionArr.Length)];
+        }
+        
     }
-
-    private Vector3 GetRandomScale()
-    {
-        return Vector3.one * Random.Range(1, 4);
-    }
-
+    
     private float GetRandomSpeed()
     {
         return Random.Range(m_minSpeed, m_maxSpeed);

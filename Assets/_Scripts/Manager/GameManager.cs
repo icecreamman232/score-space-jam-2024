@@ -128,7 +128,7 @@ public class GameManager : Singleton<GameManager>
                 m_objectInLevelList.Add(obstacle2);
                 break;
             case 3:
-                var obstacle3=Instantiate(m_obstacleLevel_2_List[Random.Range(0, m_obstacleLevel_2_List.Length)],Vector3.zero,Quaternion.identity);
+                var obstacle3=Instantiate(m_obstacleLevel_3_List[Random.Range(0, m_obstacleLevel_3_List.Length)],Vector3.zero,Quaternion.identity);
                 m_objectInLevelList.Add(obstacle3);
                 break;
         }

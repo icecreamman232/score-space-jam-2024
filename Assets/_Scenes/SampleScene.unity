@@ -2382,9 +2382,9 @@ MonoBehaviour:
   m_loadNewLevel: {fileID: 11400000, guid: ca13a1e66c4604c4d9ec05d840ed74a3, type: 2}
   m_curLevel: 0
   m_obstacleLevel_1_List:
-  - {fileID: 2897411718107288944, guid: 5e48696d285eaf44780ff37a7c29fde4, type: 3}
+  - {fileID: 2897411718107288944, guid: 4d690c1376dd70145a4e26735ba752d6, type: 3}
   m_obstacleLevel_2_List:
-  - {fileID: 2897411718107288944, guid: 5e48696d285eaf44780ff37a7c29fde4, type: 3}
+  - {fileID: 2897411718107288944, guid: e38eaaabc7c4e3746a7c0e2df5b3bd17, type: 3}
   m_obstacleLevel_3_List:
   - {fileID: 2897411718107288944, guid: 5e48696d285eaf44780ff37a7c29fde4, type: 3}
   m_objectInLevelList: []
