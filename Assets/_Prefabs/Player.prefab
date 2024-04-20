@@ -198,6 +198,7 @@ MonoBehaviour:
   m_movespeed: 4
   m_limit: {x: 8.4, y: 4.3}
   m_direction: {x: 0, y: 0}
+  m_spriteRenderer: {fileID: 4604961850375454300}
   m_spinAnim: {fileID: 1667682201018019498}
 --- !u!114 &-1313482660306554673
 MonoBehaviour:

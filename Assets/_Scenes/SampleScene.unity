@@ -2431,18 +2431,14 @@ MonoBehaviour:
   m_exitDoorPrefab: {fileID: 2338073043775166113, guid: cca794571b131e1408c1303c0af8bdb1, type: 3}
   m_levelWinEvent: {fileID: 11400000, guid: 5d01feb5543ff694eaa4162a9ed1d254, type: 2}
   m_loadNewLevel: {fileID: 11400000, guid: ca13a1e66c4604c4d9ec05d840ed74a3, type: 2}
-  m_maxLevel: 3
+  m_maxLevel: 5
   m_curLevel: 0
   m_levelPrebabList:
   - {fileID: 6129517429835976350, guid: 7e38fb723248b5b45bba94c12a88a0ed, type: 3}
   - {fileID: 2242057799464498981, guid: d645b88d0359a454ab127682e6eeb904, type: 3}
   - {fileID: 7377122192813356152, guid: 6ffafd1fe8da04f469dde779da10298e, type: 3}
-  m_obstacleLevel_1_List:
-  - {fileID: 2897411718107288944, guid: 4d690c1376dd70145a4e26735ba752d6, type: 3}
-  m_obstacleLevel_2_List:
-  - {fileID: 2897411718107288944, guid: e38eaaabc7c4e3746a7c0e2df5b3bd17, type: 3}
-  m_obstacleLevel_3_List:
-  - {fileID: 2897411718107288944, guid: 5e48696d285eaf44780ff37a7c29fde4, type: 3}
+  - {fileID: 2013799930702030202, guid: 10864a2b1fdaf8040875d47a3aa1d823, type: 3}
+  - {fileID: 5063604270046656787, guid: 3540d43dfed44f847a44979dc15854be, type: 3}
   m_objectInLevelList: []
 --- !u!4 &1502708356
 Transform:

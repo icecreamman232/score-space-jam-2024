@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_movespeed;
     [SerializeField] private Vector2 m_limit;
     [SerializeField] [ReadOnly] private Vector2 m_direction;
+    [SerializeField] private SpriteRenderer m_spriteRenderer;
     [SerializeField] private AnimationParameter m_spinAnim;
     private bool m_canMove;
     private Vector2 m_lastPos;
@@ -64,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.S))
         {
             m_direction.y = -1;
+        }
+
+        if (m_direction.x != 0)
+        {
+            m_spriteRenderer.flipX = m_direction.x > 0;
         }
     }
 
