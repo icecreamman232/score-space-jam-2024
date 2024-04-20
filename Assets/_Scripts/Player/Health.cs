@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private IntEvent m_healthEvent;
     [SerializeField] private BoolEvent m_levelWonEvent;
+    [SerializeField] private bool m_NoDamage;
 
     private bool m_isInvulnerable;
     private void Start()
@@ -19,6 +20,12 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        
+        if (m_NoDamage && Application.isEditor)
+        {
+            return;
+        }
+        
         if (m_isInvulnerable) return;
         
         m_curHealth -= damage;
