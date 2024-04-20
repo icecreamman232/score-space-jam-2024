@@ -12,13 +12,13 @@ namespace JustGame.Script.Manager
         
         #region Layers
         public static int PlayerLayer = 6;
-        public static int FoodLayer = 7;
+        public static int ObstacleLayer = 7;
 
         #endregion
 
         #region Layer Masks
         public static int PlayerMask = 1 << PlayerLayer;
-        //public static int PlayerMask = DoorMask | WallMask;
+        public static int ObstacleMask = 1 << ObstacleLayer;
         #endregion
         
         
