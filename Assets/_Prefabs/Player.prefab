@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_movespeed: 4
-  m_limit: {x: 5.5, y: 3.3}
+  m_limit: {x: 8.4, y: 4.3}
   m_direction: {x: 0, y: 0}
 --- !u!114 &-1313482660306554673
 MonoBehaviour:
