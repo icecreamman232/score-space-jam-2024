@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using JustGame.Script.Manager;
+using JustGame.Scripts.Managers;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private CameraFollowing m_cameraFollowing;
     [SerializeField] private Vector2 m_limit;
     [SerializeField] private GameObject m_playerPrefab;
     [SerializeField] private GameObject m_enterDoorPrefab;
@@ -31,6 +33,8 @@ public class GameManager : Singleton<GameManager>
     public int LastSeconds => m_lastSec;
 
     public int FloorNumber => m_maxLevel + 1 - m_curLevel;
+
+    public Vector2 GlobalLimit => m_limit;
 
     private void Start()
     {
@@ -93,6 +97,8 @@ public class GameManager : Singleton<GameManager>
         LoadObstacleForLevel(m_curLevel);
         yield return new WaitForSecondsRealtime(0.5f);
         var player = Instantiate(m_playerPrefab,m_enterPos, Quaternion.identity);
+        m_cameraFollowing.transform.position = player.transform.position;
+        m_cameraFollowing.SetTarget(player.transform);
         m_objectInLevelList.Add(player);
         m_loadNewLevel.Raise();
         UnPause();
@@ -143,5 +149,11 @@ public class GameManager : Singleton<GameManager>
         pos.x = Random.Range(-limit.x, limit.x);
         pos.y = Random.Range(-limit.y, limit.y);
         return pos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position,m_limit * 2);
     }
 }

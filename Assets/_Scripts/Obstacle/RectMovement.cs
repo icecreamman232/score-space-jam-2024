@@ -49,6 +49,10 @@ public class RectMovement : MonoBehaviour
         
         m_timerChangeSpeed = GetRandomChangeSpeedDuration();
         m_moveSpeed = GetRandomSpeed();
+
+        var boxCollider2D = GetComponent<BoxCollider2D>();
+
+        m_limit = GameManager.Instance.GlobalLimit - (Vector2)boxCollider2D.bounds.extents;
     }
 
     private void Update()

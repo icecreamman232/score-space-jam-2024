@@ -21,6 +21,9 @@ public class TriangleMovement : MonoBehaviour
         m_moveSpeed = Random.Range(m_minSpeed, m_maxSpeed);
         m_timerChangeSpeed = Random.Range(m_minDelayChangeSpeed, m_maxDelayChangeSpeed);
         m_timerChangeDirection = Random.Range(m_minDelayChangeDirection, m_maxDelayChangeDirection);
+
+        var boxCollider2D = GetComponent<BoxCollider2D>();
+        m_limit = GameManager.Instance.GlobalLimit - (Vector2)boxCollider2D.bounds.extents;
     }
 
     private void Update()

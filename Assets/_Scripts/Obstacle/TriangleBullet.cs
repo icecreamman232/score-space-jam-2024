@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TriangleBullet : MonoBehaviour
@@ -7,6 +8,13 @@ public class TriangleBullet : MonoBehaviour
 
     private bool m_canUpdate;
     private Vector2 m_lastPos;
+
+    private void Start()
+    {
+        var boxCollider = GetComponent<BoxCollider2D>();
+        m_limit = GameManager.Instance.GlobalLimit - (Vector2)boxCollider.bounds.extents;
+    }
+
     public void SpawnProjectile(Vector3 position, Quaternion quaternion = default)
     {
         transform.position = position;

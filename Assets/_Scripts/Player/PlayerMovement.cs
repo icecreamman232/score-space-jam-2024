@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AnimationParameter m_spinAnim;
     private bool m_canMove;
     private Vector2 m_lastPos;
-        
+    private BoxCollider2D m_collider2D;
     public void PauseMoving()
     {
         m_canMove = false;
@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         UnpauseMoving();
+        m_collider2D = GetComponent<BoxCollider2D>();
+        var globalLimit = GameManager.Instance.GlobalLimit;
+        m_limit = globalLimit - (Vector2)m_collider2D.bounds.extents;
     }
 
     private void Update()
