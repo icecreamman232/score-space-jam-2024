@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3428707559858046571}
   - component: {fileID: 3271384613822066294}
   - component: {fileID: -1313482660306554673}
+  - component: {fileID: 1667682201018019498}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_movespeed: 4
   m_limit: {x: 8.4, y: 4.3}
   m_direction: {x: 0, y: 0}
+  m_spinAnim: {fileID: 1667682201018019498}
 --- !u!114 &-1313482660306554673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +217,18 @@ MonoBehaviour:
   m_animator: {fileID: 5693425374684673214}
   m_healthEvent: {fileID: 11400000, guid: 57b9c4747a4254a4b828b06ad13848a7, type: 2}
   m_levelWonEvent: {fileID: 11400000, guid: 5d01feb5543ff694eaa4162a9ed1d254, type: 2}
+--- !u!114 &1667682201018019498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343996834818928481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9abd20c8346f34e9111178ff893a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetAnimator: {fileID: 5693425374684673214}
+  ParameterName: Spin
+  Duration: 0.75

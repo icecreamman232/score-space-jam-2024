@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using JustGame.Scripts.Attribute;
+using JustGame.Scripts.Common;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_movespeed;
     [SerializeField] private Vector2 m_limit;
     [SerializeField] [ReadOnly] private Vector2 m_direction;
-
+    [SerializeField] private AnimationParameter m_spinAnim;
     private bool m_canMove;
     private Vector2 m_lastPos;
         
@@ -22,6 +22,13 @@ public class PlayerMovement : MonoBehaviour
     {
         m_canMove = true;
     }
+
+    public void MoveToExitDoor(Transform target)
+    {
+        m_spinAnim.SetTrigger();
+        transform.DOMove(target.position, m_spinAnim.Duration).SetUpdate(true);
+    }
+    
 
     private void Start()
     {
