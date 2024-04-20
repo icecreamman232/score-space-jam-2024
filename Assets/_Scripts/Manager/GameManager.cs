@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -66,6 +65,10 @@ public class GameManager : Singleton<GameManager>
     private void OnLevelWon(bool isWin)
     {
         Pause();
+        for (int i = 0; i < m_objectInLevelList.Count; i++)
+        {
+            Destroy(m_objectInLevelList[i]);
+        }
         if (isWin)
         {
             m_curLevel++;
@@ -80,12 +83,7 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator LoadLevelRoutine()
     {
         Pause();
-
-        for (int i = 0; i < m_objectInLevelList.Count; i++)
-        {
-            Destroy(m_objectInLevelList[i].gameObject);
-            yield return new WaitForEndOfFrame();
-        }
+        
         m_objectInLevelList.Clear();
         
         LoadLevelLayout(m_curLevel);
@@ -105,15 +103,7 @@ public class GameManager : Singleton<GameManager>
         
         m_objectInLevelList.Add(levelGO);
     }
-
-    private Vector2 RandomPosInLimit(Vector2 limit)
-    {
-        var pos = Vector2.zero;
-        pos.x = Random.Range(-limit.x, limit.x);
-        pos.y = Random.Range(-limit.y, limit.y);
-        return pos;
-    }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
