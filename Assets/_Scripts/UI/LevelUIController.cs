@@ -19,6 +19,6 @@ public class LevelUIController : MonoBehaviour
 
     private void OnLoadLevelDone()
     {
-        m_levelTxt.text = $"Floor {(4 - GameManager.Instance.CurrentLevel)}";
+        m_levelTxt.text = $"Floor {GameManager.Instance.FloorNumber}";
     }
 }

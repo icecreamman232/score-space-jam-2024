@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
     [Header("Level")] 
+    [SerializeField] private int m_maxLevel;
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_obstacleLevel_1_List;
     [SerializeField] private GameObject[] m_obstacleLevel_2_List;
@@ -29,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     public int LastMinute => m_lastMin;
     public int LastSeconds => m_lastSec;
 
-    public int CurrentLevel => m_curLevel;
+    public int FloorNumber => m_maxLevel + 1 - m_curLevel;
 
     private void Start()
     {
