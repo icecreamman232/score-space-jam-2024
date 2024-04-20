@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JustGame.Script.Manager;
+using JustGame.Scripts.Attribute;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 
@@ -13,14 +14,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
     [Header("Level")] 
-    [SerializeField] private int m_maxLevel;
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_levelPrebabList;
     [SerializeField] private List<GameObject> m_objectInLevelList;
     
     private int m_lastMin;
     private int m_lastSec;
-    
+    private int m_maxLevel;
     private Vector2 m_enterPos;
 
     public int LastMinute => m_lastMin;
@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        m_maxLevel = m_levelPrebabList.Length;
         m_objectInLevelList = new List<GameObject>();
         m_curLevel = 1;
         m_levelWinEvent.AddListener(OnLevelWon);

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1927871365567416247}
   - component: {fileID: 8987388588355051583}
   - component: {fileID: 6411334629327532279}
-  - component: {fileID: 7518280273878131750}
   - component: {fileID: 378566936814394860}
+  - component: {fileID: 4727344488013194109}
   m_Layer: 7
-  m_Name: Rect-big
+  m_Name: Rect-big-up-down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,27 +184,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.24, y: 1.24}
   m_EdgeRadius: 0
---- !u!114 &7518280273878131750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897411718107288944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e48676b9f313f64382b5bff003e61b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_limit: {x: 6.87, y: 3}
-  m_minDuration: 2
-  m_maxDuration: 5
-  m_is4Direction: 1
-  m_moveSpeed: 3
-  m_minSpeed: 2
-  m_maxSpeed: 5
-  m_minDurationChangeSpeed: 5
-  m_maxDurationChangeSpeed: 8
 --- !u!114 &378566936814394860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +197,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damageCause: 1
+--- !u!114 &4727344488013194109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897411718107288944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711198ef0100f3848802c6f31559f3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moveSpeed: 3
+  m_moveDirection:
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}

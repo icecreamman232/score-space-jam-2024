@@ -116,7 +116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2275314208344597625}
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPooler: {fileID: 5786180212613276865}
   m_shootPivot: {fileID: 2275314208344597625}
-  m_minDelayShot: 2
-  m_maxDelayShot: 4
+  m_minDelayShot: 1
+  m_maxDelayShot: 3
   m_bulletPerShot: 2
 --- !u!114 &5786180212613276865
 MonoBehaviour:

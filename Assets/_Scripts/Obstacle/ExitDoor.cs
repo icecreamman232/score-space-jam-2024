@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using JustGame.Script.Manager;
 
@@ -39,5 +40,11 @@ public class ExitDoor : MonoBehaviour
         
         m_hasProcess = false;
         m_winLevelEvent.Raise(true);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position,0.3f);
     }
 }

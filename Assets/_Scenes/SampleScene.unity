@@ -1939,7 +1939,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234951181}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2431,7 +2431,6 @@ MonoBehaviour:
   m_exitDoorPrefab: {fileID: 2338073043775166113, guid: cca794571b131e1408c1303c0af8bdb1, type: 3}
   m_levelWinEvent: {fileID: 11400000, guid: 5d01feb5543ff694eaa4162a9ed1d254, type: 2}
   m_loadNewLevel: {fileID: 11400000, guid: ca13a1e66c4604c4d9ec05d840ed74a3, type: 2}
-  m_maxLevel: 5
   m_curLevel: 0
   m_levelPrebabList:
   - {fileID: 6129517429835976350, guid: 7e38fb723248b5b45bba94c12a88a0ed, type: 3}
@@ -2439,6 +2438,8 @@ MonoBehaviour:
   - {fileID: 7377122192813356152, guid: 6ffafd1fe8da04f469dde779da10298e, type: 3}
   - {fileID: 2013799930702030202, guid: 10864a2b1fdaf8040875d47a3aa1d823, type: 3}
   - {fileID: 5063604270046656787, guid: 3540d43dfed44f847a44979dc15854be, type: 3}
+  - {fileID: 8366924648545072740, guid: e8abaf4e04f2b854b84ae5f590826b8b, type: 3}
+  - {fileID: 5928685564794986977, guid: 206e7d5039f6e384e992a08be9a13cf3, type: 3}
   m_objectInLevelList: []
 --- !u!4 &1502708356
 Transform:
