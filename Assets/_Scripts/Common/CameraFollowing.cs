@@ -36,6 +36,8 @@ namespace JustGame.Scripts.Managers
             m_targetPos = m_targetTransform.position;
             m_targetPos.z = -10;
             m_cameraTransform.position = Vector3.Lerp(m_cameraTransform.position, m_targetPos, Time.deltaTime * m_followingSpeed / 10);
+            
+            
         }
 
         public void ResetCamera()

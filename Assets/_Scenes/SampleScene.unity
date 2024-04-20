@@ -442,7 +442,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -568,21 +567,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a44fecc3b0360114dbb93b840016e34a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_cameraTransform: {fileID: 519420032}
-  m_targetTransform: {fileID: 0}
-  m_followingSpeed: 100
 --- !u!1 &536802719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,8 +2425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a62077b447a6d44aab61fb31051169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cameraFollowing: {fileID: 519420033}
-  m_limit: {x: 16, y: 10}
+  m_limit: {x: 9, y: 5}
   m_playerPrefab: {fileID: 3343996834818928481, guid: 61019f0032707004e90acb4f3000057f, type: 3}
   m_enterDoorPrefab: {fileID: 6099453582993817740, guid: 5c75dd8cb0af30a4388aa6e3740b92d9, type: 3}
   m_exitDoorPrefab: {fileID: 2338073043775166113, guid: cca794571b131e1408c1303c0af8bdb1, type: 3}
@@ -2450,6 +2433,10 @@ MonoBehaviour:
   m_loadNewLevel: {fileID: 11400000, guid: ca13a1e66c4604c4d9ec05d840ed74a3, type: 2}
   m_maxLevel: 3
   m_curLevel: 0
+  m_levelPrebabList:
+  - {fileID: 6129517429835976350, guid: 7e38fb723248b5b45bba94c12a88a0ed, type: 3}
+  - {fileID: 2242057799464498981, guid: d645b88d0359a454ab127682e6eeb904, type: 3}
+  - {fileID: 7377122192813356152, guid: 6ffafd1fe8da04f469dde779da10298e, type: 3}
   m_obstacleLevel_1_List:
   - {fileID: 2897411718107288944, guid: 4d690c1376dd70145a4e26735ba752d6, type: 3}
   m_obstacleLevel_2_List:
