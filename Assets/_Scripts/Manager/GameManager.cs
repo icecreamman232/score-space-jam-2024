@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager>
     public int LastMinute => m_lastMin;
     public int LastSeconds => m_lastSec;
 
+    public int CurrentLevel => m_curLevel;
+
     private void Start()
     {
         m_objectInLevelList = new List<GameObject>();
