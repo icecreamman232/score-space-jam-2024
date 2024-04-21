@@ -5,6 +5,7 @@ using DG.Tweening;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,7 +15,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject m_exitDoorPrefab;
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
-    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioSource m_music;
+    [SerializeField] private AudioSource m_exitDoorSound;
     [Header("Level")] 
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_levelPrebabList;
@@ -68,18 +70,23 @@ public class GameManager : Singleton<GameManager>
         m_lastSec = sec;
     }
 
+    public void PlayExitDoorSound()
+    {
+        m_exitDoorSound.Play();
+    }
+    
     public void PlayBGM()
     {
-        if (m_audioSource.isPlaying) return;
-        m_audioSource.Play();
-        m_audioSource.DOFade(1, 1f);
+        if (m_music.isPlaying) return;
+        m_music.Play();
+        m_music.DOFade(1, 1f);
     }
 
     public void StopBGM()
     {
-        m_audioSource.DOFade(0, 0.5f).OnComplete(() =>
+        m_music.DOFade(0, 0.5f).OnComplete(() =>
         {
-            m_audioSource.Stop();
+            m_music.Stop();
         });
     }
     

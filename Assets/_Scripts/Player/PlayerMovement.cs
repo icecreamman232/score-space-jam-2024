@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveToExitDoor(Transform target)
     {
+        GameManager.Instance.PlayExitDoorSound();
         m_spinAnim.SetTrigger();
         transform.DOMove(target.position, m_spinAnim.Duration).SetUpdate(true);
     }
