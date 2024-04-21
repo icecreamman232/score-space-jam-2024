@@ -9,7 +9,6 @@ public class HUDController : MonoBehaviour
     
     private void Start()
     {
-        Show();
         m_levelWonEvent.AddListener(OnLevelWon);
         m_loadLevelDoneEvent.AddListener(OnLoadLevelDone);
     }

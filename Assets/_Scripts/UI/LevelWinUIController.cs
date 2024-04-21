@@ -38,6 +38,7 @@ public class LevelWinUIController : MonoBehaviour
         m_canvasGroup.alpha = 1;
         m_canvasGroup.interactable = true;
         m_canvasGroup.blocksRaycasts = true;
+        m_timeTxt.transform.parent.gameObject.SetActive(false);
     }
 
     public void Hide()
