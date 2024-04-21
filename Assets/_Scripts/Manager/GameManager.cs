@@ -1,7 +1,6 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
@@ -31,8 +30,10 @@ public class GameManager : Singleton<GameManager>
 
     public Vector2 GlobalLimit => m_limit;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => !SceneLoader.Instance.IsLoadDone);
+        
         m_maxLevel = m_levelPrebabList.Length;
         m_objectInLevelList = new List<GameObject>();
         m_curLevel = 1;

@@ -35,7 +35,7 @@ public class TimerUIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnUpdateTime -= GameManager.Instance.RecordTime;
+        //OnUpdateTime -= GameManager.Instance.RecordTime;
         m_OnLevelWonEvent.RemoveListener(OnLevelWon);
     }
     
