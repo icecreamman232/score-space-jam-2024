@@ -11,6 +11,13 @@ public class ExitDoor : MonoBehaviour
     [SerializeField] private BoolEvent m_winLevelEvent;
     [SerializeField] private Animator m_animator;
     private bool m_hasProcess;
+
+    public void Appear()
+    {
+        m_spriteRenderer.maskInteraction = SpriteMaskInteraction.None;
+        this.gameObject.SetActive(true);
+    }
+    
     
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using JustGame.Script.Manager;
 using JustGame.Scripts.Attribute;
 using JustGame.Scripts.Common;
 using UnityEngine;
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool m_canMove;
     private Vector2 m_lastPos;
     private BoxCollider2D m_collider2D;
+    
     public void PauseMoving()
     {
         m_canMove = false;
@@ -75,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
+        if (IsThereObstacle())
+        {
+            return;
+        }
+        
         transform.Translate(m_direction * (m_movespeed * Time.deltaTime));
         m_lastPos = transform.position;
         if (Mathf.Abs(m_lastPos.x) > m_limit.x)
@@ -87,5 +95,24 @@ public class PlayerMovement : MonoBehaviour
             m_lastPos.y = m_lastPos.y > 0 ? m_limit.y : -m_limit.y;
             transform.position = m_lastPos;
         }
+    }
+
+    private bool IsThereObstacle()
+    {
+        var hit = Physics2D.OverlapBox((Vector2)transform.position + m_direction * 0.1f, 
+            m_collider2D.size, 
+            0, 
+            LayerManager.BlockMask);
+        if (hit != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((Vector2)transform.position + m_direction * 0.1f, m_collider2D.size );
     }
 }

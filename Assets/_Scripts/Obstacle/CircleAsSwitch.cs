@@ -12,6 +12,8 @@ public class CircleAsSwitch : MonoBehaviour
     [SerializeField] private UnityEvent m_triggerWhenOn;
     [SerializeField] private UnityEvent m_triggerWhenOff;
 
+    public bool IsOn => m_isOn;
+    
     private void Start()
     {
         m_spriteRenderer.color = m_isOn ? m_onColor : m_offColor;
@@ -25,6 +27,18 @@ public class CircleAsSwitch : MonoBehaviour
         }
 
         TriggerSwitch();
+    }
+
+    public void SwitchOn()
+    {
+        m_isOn = true;
+        m_spriteRenderer.color = m_onColor;
+    }
+
+    public void SwitchOff()
+    {
+        m_isOn = false;
+        m_spriteRenderer.color = m_offColor;
     }
 
     private void TriggerSwitch()

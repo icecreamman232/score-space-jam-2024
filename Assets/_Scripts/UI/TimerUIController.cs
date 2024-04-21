@@ -1,6 +1,7 @@
 using System;
 using JustGame.Scripts.ScriptableEvent;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TimerUIController : MonoBehaviour
@@ -10,6 +11,7 @@ public class TimerUIController : MonoBehaviour
     [SerializeField] private int m_curSec;
     [Header("UI")] 
     [SerializeField] private TextMeshProUGUI m_timerText;
+    [SerializeField] private BoolEvent m_OnLevelWonEvent;
 
     private float m_timer;
 
@@ -21,11 +23,20 @@ public class TimerUIController : MonoBehaviour
         m_curSec = 0;
         m_timerText.text = "00:00";
         OnUpdateTime += GameManager.Instance.RecordTime;
+        m_OnLevelWonEvent.AddListener(OnLevelWon);
+    }
+
+    private void OnLevelWon(bool isWon)
+    {
+        m_curMin = 0;
+        m_curSec = 0;
+        m_timerText.text = "00:00";
     }
 
     private void OnDestroy()
     {
         OnUpdateTime -= GameManager.Instance.RecordTime;
+        m_OnLevelWonEvent.RemoveListener(OnLevelWon);
     }
     
     private void Update()
