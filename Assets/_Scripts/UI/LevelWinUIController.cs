@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JustGame.Scripts.ScriptableEvent;
 using TMPro;
 using UnityEngine;
@@ -7,12 +8,14 @@ public class LevelWinUIController : MonoBehaviour
     [SerializeField] private CanvasGroup m_canvasGroup;
     [SerializeField] private TextMeshProUGUI m_timeTxt;
     [SerializeField] private TextMeshProUGUI m_floorTxt;
+    [SerializeField] private DOTweenAnimation m_floorTween;
     [SerializeField] private BoolEvent m_levelWonEvent;
 
     private void Start()
     {
         Hide();
         m_levelWonEvent.AddListener(OnLevelWon);
+        m_timeTxt.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -26,6 +29,7 @@ public class LevelWinUIController : MonoBehaviour
         Show();
         var gameManager = GameManager.Instance;
         m_floorTxt.text = $"Floor {GameManager.Instance.FloorNumber}";
+        m_floorTween.DORestart();
         m_timeTxt.text = $"{gameManager.LastMinute:00}:{gameManager.LastSeconds:00}";
     }
 
