@@ -21,7 +21,6 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        
         if (m_NoDamage && Application.isEditor)
         {
             return;
@@ -35,16 +34,19 @@ public class Health : MonoBehaviour
         
         if (m_curHealth <= 0)
         {
-            ProcessKill();
+            StartCoroutine(ProcessKill());
             return;
         }
         
         StartCoroutine(OnInvulnerable());
     }
 
-    private void ProcessKill()
+    private IEnumerator ProcessKill()
     {
         m_isInvulnerable = true;
+        
+        //Waiting for camera shake done <= dirty fix
+        yield return new WaitForSecondsRealtime(0.5f); 
         //Raise event that the level is lost = player's dead
         m_levelWonEvent.Raise(false);
         Debug.Log("<color=red>Player DEAD</color>");

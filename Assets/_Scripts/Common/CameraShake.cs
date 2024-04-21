@@ -21,6 +21,7 @@ public class CameraShake : MonoBehaviour
     [ContextMenu("Test Shake")]
     private void OnCameraShake()
     {
-        m_shakeTween.DORestart();
+        m_shakeTween.DORewind();
+        m_shakeTween.DOPlay();
     }
 }

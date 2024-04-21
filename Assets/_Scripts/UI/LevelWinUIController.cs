@@ -6,6 +6,7 @@ public class LevelWinUIController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup m_canvasGroup;
     [SerializeField] private TextMeshProUGUI m_timeTxt;
+    [SerializeField] private TextMeshProUGUI m_floorTxt;
     [SerializeField] private BoolEvent m_levelWonEvent;
 
     private void Start()
@@ -24,6 +25,7 @@ public class LevelWinUIController : MonoBehaviour
         if (!isWon) return;
         Show();
         var gameManager = GameManager.Instance;
+        m_floorTxt.text = $"Floor {GameManager.Instance.FloorNumber}";
         m_timeTxt.text = $"{gameManager.LastMinute:00}:{gameManager.LastSeconds:00}";
     }
 
