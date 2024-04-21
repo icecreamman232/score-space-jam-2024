@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (m_collider2D == null) return;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube((Vector2)transform.position + m_direction * 0.1f, m_collider2D.size );
     }

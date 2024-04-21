@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private IntEvent m_healthEvent;
     [SerializeField] private BoolEvent m_levelWonEvent;
+    [SerializeField] private ActionEvent m_cameraShakeEvent;
     [SerializeField] private bool m_NoDamage;
 
     private bool m_isInvulnerable;
@@ -30,6 +31,7 @@ public class Health : MonoBehaviour
         
         m_curHealth -= damage;
         m_healthEvent.Raise(m_curHealth);
+        m_cameraShakeEvent.Raise();
         
         if (m_curHealth <= 0)
         {

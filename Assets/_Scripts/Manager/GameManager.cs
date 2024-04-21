@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using JustGame.Script.Manager;
-using JustGame.Scripts.Attribute;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 
@@ -40,6 +41,7 @@ public class GameManager : Singleton<GameManager>
         //LOAD LEVEL ROUTINE START HERE
         LoadLevel();
     }
+    
 
     private void OnDestroy()
     {
