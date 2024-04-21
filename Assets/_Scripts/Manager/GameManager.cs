@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject m_exitDoorPrefab;
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
+    [SerializeField] private AudioSource m_audioSource;
     [Header("Level")] 
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_levelPrebabList;
@@ -65,6 +67,21 @@ public class GameManager : Singleton<GameManager>
         m_lastMin = min;
         m_lastSec = sec;
     }
+
+    public void PlayBGM()
+    {
+        if (m_audioSource.isPlaying) return;
+        m_audioSource.Play();
+        m_audioSource.DOFade(1, 1f);
+    }
+
+    public void StopBGM()
+    {
+        m_audioSource.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            m_audioSource.Stop();
+        });
+    }
     
     private void OnLevelWon(bool isWin)
     {
@@ -94,6 +111,7 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSecondsRealtime(0.5f);
         var player = Instantiate(m_playerPrefab,m_enterPos, Quaternion.identity);
         m_objectInLevelList.Add(player);
+        PlayBGM();
         m_loadNewLevel.Raise();
         UnPause();
     }
