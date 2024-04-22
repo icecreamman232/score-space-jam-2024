@@ -125,6 +125,8 @@ public class GameManager : Singleton<GameManager>
 
     public void Replay()
     {
+        //Reset level
+        m_curLevel = 1;
         //Force to set player health back to 3
         LoadLevel(0, 3);
     }
