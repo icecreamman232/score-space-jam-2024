@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
   ObjectToPool: {fileID: 1149296185331531770, guid: 860cf870be6d2cd4091a1c93c103eb80, type: 3}
-  PoolSize: 20
+  PoolSize: 16
 --- !u!114 &2061743851536290206
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,11 +91,14 @@ public class GameManager : Singleton<GameManager>
     
     private void OnLevelWon(bool isWin)
     {
+        
         Pause();
+        
         for (int i = 0; i < m_objectInLevelList.Count; i++)
         {
             Destroy(m_objectInLevelList[i]);
         }
+        
         if (isWin)
         {
             m_curLevel++;

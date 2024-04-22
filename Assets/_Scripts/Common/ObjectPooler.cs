@@ -46,8 +46,17 @@ namespace JustGame.Scripts.Managers
             
             return null;
         }
-        
-        
+
+        private void OnDestroy()
+        {
+            for (int i = 0; i < m_pool.Count; i++)
+            {
+                if (m_pool[i] != null)
+                {
+                    Destroy(m_pool[i]);
+                }
+            }
+        }
     }
 }
 
