@@ -1,11 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject m_exitDoorPrefab;
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
+    [SerializeField] private ActionEvent m_playOpeningEvent;
     [SerializeField] private AudioSource m_music;
     [SerializeField] private AudioSource m_exitDoorSound;
     [Header("Level")] 
@@ -100,19 +99,25 @@ public class GameManager : Singleton<GameManager>
         if (isWin)
         {
             m_curLevel++;
+            LoadLevel(1.5f);
         }
     }
 
-    public void LoadLevel()
+    public void LoadLevel(float delay = 0)
     {
-        StartCoroutine(LoadLevelRoutine());
+        StartCoroutine(LoadLevelRoutine(delay));
     }
 
-    private IEnumerator LoadLevelRoutine()
+    private IEnumerator LoadLevelRoutine(float delay  = 0)
     {
         Pause();
-        
         m_objectInLevelList.Clear();
+
+        yield return new WaitForSecondsRealtime(delay);
+        
+        m_playOpeningEvent.Raise();
+
+        yield return new WaitForSecondsRealtime(0.3f+0.3f+0.7f);
         
         LoadLevelLayout(m_curLevel);
         yield return new WaitForSecondsRealtime(0.5f);

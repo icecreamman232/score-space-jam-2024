@@ -14,13 +14,13 @@ public class LevelWinUIController : MonoBehaviour
     private void Start()
     {
         Hide();
-        m_levelWonEvent.AddListener(OnLevelWon);
+        //m_levelWonEvent.AddListener(OnLevelWon);
         m_timeTxt.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
     {
-        m_levelWonEvent.RemoveListener(OnLevelWon);
+        //m_levelWonEvent.RemoveListener(OnLevelWon);
     }
 
     private void OnLevelWon(bool isWon)
