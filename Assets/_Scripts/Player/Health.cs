@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 
@@ -11,12 +12,20 @@ public class Health : MonoBehaviour
     [SerializeField] private IntEvent m_healthEvent;
     [SerializeField] private BoolEvent m_levelWonEvent;
     [SerializeField] private ActionEvent m_cameraShakeEvent;
+    [SerializeField] private AudioSource m_hurtSound;
     [SerializeField] private bool m_NoDamage;
 
     private bool m_isInvulnerable;
     private void Start()
     {
         m_curHealth = m_maxHealth;
+    }
+
+    private void PlayHurtSound()
+    {
+        m_hurtSound.volume = 1;
+        m_hurtSound.Play();
+        m_hurtSound.DOFade(0f, 0.5f).SetDelay(m_invulnerableDuration);
     }
 
     public void TakeDamage(int damage)
@@ -31,6 +40,7 @@ public class Health : MonoBehaviour
         m_curHealth -= damage;
         m_healthEvent.Raise(m_curHealth);
         m_cameraShakeEvent.Raise();
+        PlayHurtSound();
         
         if (m_curHealth <= 0)
         {
