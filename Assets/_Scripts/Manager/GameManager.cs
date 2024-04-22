@@ -131,7 +131,7 @@ public class GameManager : Singleton<GameManager>
     
     public void LoadLevel(float delay = 0, int forceHealth = 0)
     {
-        StartCoroutine(LoadLevelRoutine(delay, 3));
+        StartCoroutine(LoadLevelRoutine(delay, forceHealth));
     }
 
     private IEnumerator LoadLevelRoutine(float delay  = 0,int forceHealth = 0)
