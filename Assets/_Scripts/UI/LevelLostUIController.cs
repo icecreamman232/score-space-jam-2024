@@ -6,15 +6,12 @@ using UnityEngine;
 public class LevelLostUIController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup m_canvasGroup;
-    [SerializeField] private TextMeshProUGUI m_timeTxt;
     [SerializeField] private TextMeshProUGUI m_floorTxt;
     [SerializeField] private BoolEvent m_levelWonEvent;
-    [SerializeField] private DOTweenAnimation m_floorTxtTween;
 
     private void Start()
     {
         Hide();
-        m_timeTxt.transform.parent.gameObject.SetActive(false);
         m_levelWonEvent.AddListener(OnLevelWon);
     }
 
@@ -28,9 +25,7 @@ public class LevelLostUIController : MonoBehaviour
         if (isWon) return;
         Show();
         var gameManager = GameManager.Instance;
-        m_floorTxt.text = $"Floor {GameManager.Instance.FloorNumber}";
-        m_floorTxtTween.DORestart();
-        m_timeTxt.text = $"{gameManager.LastMinute:00}:{gameManager.LastSeconds:00}";
+        m_floorTxt.text = $"Highest floor {GameManager.Instance.FloorNumber}";
     }
 
     private void Show()

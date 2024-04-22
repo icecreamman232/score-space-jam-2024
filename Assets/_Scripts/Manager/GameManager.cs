@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private BoolEvent m_levelWinEvent;
     [SerializeField] private ActionEvent m_loadNewLevel;
     [SerializeField] private ActionEvent m_playOpeningEvent;
+    [SerializeField] private ActionEvent m_finalLevelEvent;
     [SerializeField] private AudioSource m_music;
     [SerializeField] private AudioSource m_exitDoorSound;
     [Header("Level")] 
@@ -25,7 +26,9 @@ public class GameManager : Singleton<GameManager>
     private int m_lastSec;
     private int m_maxLevel;
     private Vector2 m_enterPos;
-
+    private bool m_isFinalLevel;
+    
+    
     public int LastMinute => m_lastMin;
     public int LastSeconds => m_lastSec;
 
@@ -91,13 +94,21 @@ public class GameManager : Singleton<GameManager>
     
     private void OnLevelWon(bool isWin)
     {
-        
         Pause();
         
         for (int i = 0; i < m_objectInLevelList.Count; i++)
         {
             Destroy(m_objectInLevelList[i]);
         }
+        
+        if (isWin && m_isFinalLevel)
+        {
+            //TODO: What do I need to do for final moment ?
+            StopBGM();
+            m_finalLevelEvent.Raise();
+            return;
+        }
+
         
         if (isWin)
         {
@@ -136,6 +147,11 @@ public class GameManager : Singleton<GameManager>
     {
         var levelGO = Instantiate(m_levelPrebabList[level-1],Vector3.zero,Quaternion.identity);
         var levelData = levelGO.GetComponent<LevelData>();
+        if (levelData is FinalLevel)
+        {
+            m_isFinalLevel = true;
+        }
+        
         m_enterPos = levelData.EnterDoor.position;
         
         m_objectInLevelList.Add(levelGO);
