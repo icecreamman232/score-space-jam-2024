@@ -21,7 +21,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int m_curLevel;
     [SerializeField] private GameObject[] m_levelPrebabList;
     [SerializeField] private List<GameObject> m_objectInLevelList;
-    
+
+    private int m_lastHealth;
     private int m_lastMin;
     private int m_lastSec;
     private int m_maxLevel;
@@ -43,6 +44,7 @@ public class GameManager : Singleton<GameManager>
         m_maxLevel = m_levelPrebabList.Length;
         m_objectInLevelList = new List<GameObject>();
         m_curLevel = 1;
+        m_lastHealth = 3;
         m_levelWinEvent.AddListener(OnLevelWon);
 
         //LOAD LEVEL ROUTINE START HERE
@@ -98,6 +100,10 @@ public class GameManager : Singleton<GameManager>
         
         for (int i = 0; i < m_objectInLevelList.Count; i++)
         {
+            if (m_objectInLevelList[i].TryGetComponent<Health>(out var health))
+            {
+                m_lastHealth = health.CurrentHealth;
+            }
             Destroy(m_objectInLevelList[i]);
         }
         
@@ -117,12 +123,18 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void LoadLevel(float delay = 0)
+    public void Replay()
     {
-        StartCoroutine(LoadLevelRoutine(delay));
+        //Force to set player health back to 3
+        LoadLevel(0, 3);
+    }
+    
+    public void LoadLevel(float delay = 0, int forceHealth = 0)
+    {
+        StartCoroutine(LoadLevelRoutine(delay, 3));
     }
 
-    private IEnumerator LoadLevelRoutine(float delay  = 0)
+    private IEnumerator LoadLevelRoutine(float delay  = 0,int forceHealth = 0)
     {
         Pause();
         m_objectInLevelList.Clear();
@@ -136,6 +148,19 @@ public class GameManager : Singleton<GameManager>
         LoadLevelLayout(m_curLevel);
         yield return new WaitForSecondsRealtime(0.5f);
         var player = Instantiate(m_playerPrefab,m_enterPos, Quaternion.identity);
+
+        var health = player.GetComponent<Health>();
+        if (forceHealth > 0)
+        {
+            health.SetHealth(forceHealth);
+            m_lastHealth = forceHealth;
+        }
+        else
+        {
+            health.SetHealth(m_lastHealth);
+        }
+        
+        
         m_objectInLevelList.Add(player);
         PlayBGM();
         m_loadNewLevel.Raise();

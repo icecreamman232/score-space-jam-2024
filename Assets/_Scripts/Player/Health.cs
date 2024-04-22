@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using JustGame.Scripts.ScriptableEvent;
@@ -15,12 +16,21 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioSource m_hurtSound;
     [SerializeField] private bool m_NoDamage;
 
+    public int CurrentHealth => m_curHealth;
+
+    public void SetHealth(int health)
+    {
+        m_curHealth = health;
+        m_healthEvent.Raise(m_curHealth);
+    }
+
     private bool m_isInvulnerable;
-    private void Start()
+
+    private void Awake()
     {
         m_curHealth = m_maxHealth;
     }
-
+    
     private void PlayHurtSound()
     {
         m_hurtSound.volume = 1;

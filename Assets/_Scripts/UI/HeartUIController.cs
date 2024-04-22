@@ -21,25 +21,37 @@ public class HeartUIController : MonoBehaviour
 
     private void OnLoadLevelDone()
     {
-        foreach (var heart in m_heartArr)
-        {
-            heart.SetActive(true);
-        }
+        // foreach (var heart in m_heartArr)
+        // {
+        //     heart.SetActive(true);
+        // }
     }
     
     private void OnUpdateHealth(int curHealth)
     {
-        if (curHealth == 2)
+        if (curHealth == 3)
         {
+            m_heartArr[0].SetActive(true);
+            m_heartArr[1].SetActive(true);
+            m_heartArr[2].SetActive(true);
+        }
+        else if (curHealth == 2)
+        {
+            m_heartArr[0].SetActive(true);
+            m_heartArr[1].SetActive(true);
             m_heartArr[2].SetActive(false);
         }
         else if (curHealth == 1)
         {
+            m_heartArr[0].SetActive(true);
             m_heartArr[1].SetActive(false);
+            m_heartArr[2].SetActive(false);
         }
         else
         {
             m_heartArr[0].SetActive(false);
+            m_heartArr[1].SetActive(false);
+            m_heartArr[2].SetActive(false);
         }
     }
 }

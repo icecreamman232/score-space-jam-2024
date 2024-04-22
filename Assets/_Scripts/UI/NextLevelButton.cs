@@ -25,7 +25,7 @@ public class NextLevelButton : Button
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Instance.LoadLevel();
+        GameManager.Instance.Replay();
         base.OnPointerClick(eventData);
     }
 }
