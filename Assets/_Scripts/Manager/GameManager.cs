@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using JustGame.Script.Data;
 using JustGame.Script.Manager;
+using JustGame.Script.Obstacle;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public class GameManager : Singleton<GameManager>
     private int m_maxLevel;
     private Vector2 m_enterPos;
     private bool m_isFinalLevel;
-    
+    private LevelData m_curLevelData;
     
     public int LastMinute => m_lastMin;
     public int LastSeconds => m_lastSec;
@@ -39,7 +40,7 @@ public class GameManager : Singleton<GameManager>
     public int FloorNumber => m_maxLevel + 1 - m_curLevel;
 
     public Vector2 GlobalLimit => m_limit;
-
+    
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => !SceneLoader.Instance.IsLoadDone);
@@ -86,7 +87,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (m_music.isPlaying) return;
         m_music.Play();
-        m_music.DOFade(1, 1f);
+        m_music.DOFade(0.6f, 1f);
     }
 
     public void StopBGM()
@@ -153,7 +154,7 @@ public class GameManager : Singleton<GameManager>
         LoadLevelLayout(m_curLevel);
         yield return new WaitForSecondsRealtime(0.5f);
         var player = Instantiate(m_playerPrefab,m_enterPos, Quaternion.identity);
-
+        
         var health = player.GetComponent<Health>();
         if (forceHealth > 0)
         {
@@ -164,7 +165,13 @@ public class GameManager : Singleton<GameManager>
         {
             health.SetHealth(m_lastHealth);
         }
-        
+
+        var exitDoorSoundFX = m_curLevelData.ExitDoor.GetComponent<PlaySoundBasedOnDistanceToPlayer>();
+        if (exitDoorSoundFX != null)
+        {
+            exitDoorSoundFX.SetPlayerRef(player.transform);
+
+        }
         
         m_objectInLevelList.Add(player);
         PlayBGM();
@@ -176,13 +183,13 @@ public class GameManager : Singleton<GameManager>
     private void LoadLevelLayout(int level)
     {
         var levelGO = Instantiate(m_levelContainer.GetLevel(level-1),Vector3.zero,Quaternion.identity);
-        var levelData = levelGO.GetComponent<LevelData>();
-        if (levelData is FinalLevel)
+        m_curLevelData = levelGO.GetComponent<LevelData>();
+        if (m_curLevelData is FinalLevel)
         {
             m_isFinalLevel = true;
         }
         
-        m_enterPos = levelData.EnterDoor.position;
+        m_enterPos = m_curLevelData.EnterDoor.position;
         
         m_objectInLevelList.Add(levelGO);
     }
