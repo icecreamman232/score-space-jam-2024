@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using JustGame.Script.Data;
 using JustGame.Script.Manager;
 using JustGame.Scripts.ScriptableEvent;
 using UnityEngine;
@@ -19,7 +20,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private AudioSource m_exitDoorSound;
     [Header("Level")] 
     [SerializeField] private int m_curLevel;
-    [SerializeField] private GameObject[] m_levelPrebabList;
+
+    [SerializeField] private LevelContainer m_levelContainer;
+    //[SerializeField] private GameObject[] m_levelPrebabList;
     [SerializeField] private List<GameObject> m_objectInLevelList;
 
     private int m_lastHealth;
@@ -40,8 +43,8 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => !SceneLoader.Instance.IsLoadDone);
-        
-        m_maxLevel = m_levelPrebabList.Length;
+
+        m_maxLevel = m_levelContainer.LevelNumber;
         m_objectInLevelList = new List<GameObject>();
         m_curLevel = 1;
         m_lastHealth = 3;
@@ -172,7 +175,7 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadLevelLayout(int level)
     {
-        var levelGO = Instantiate(m_levelPrebabList[level-1],Vector3.zero,Quaternion.identity);
+        var levelGO = Instantiate(m_levelContainer.GetLevel(level-1),Vector3.zero,Quaternion.identity);
         var levelData = levelGO.GetComponent<LevelData>();
         if (levelData is FinalLevel)
         {
